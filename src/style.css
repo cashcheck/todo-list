@@ -1,0 +1,31 @@
+#navBar {
+    background-color: lightgray;
+    color: white;
+    padding: 5px;
+}
+
+.projectContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+}
+
+.toDoTask {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.addToDo {
+    background-color: lightgray;
+    padding: 10px;
+    margin: 5px;
+}
+
+.addToDo:hover {
+    cursor: pointer;
+    background-color: grey;
+}
