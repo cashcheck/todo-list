@@ -1,31 +1,180 @@
+body {
+    font-family: sans-serif;
+}
+
+h1 {
+    font-size: 4rem;
+    margin-left: 25px;
+}
+
+h3 {
+    margin: 20px 0 20px 0;
+    font-size: 3rem;
+    padding: 0;
+}
+
+h4 {
+    font-size: 2rem;
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    font-size: 1.3rem;
+    padding: 0;
+    margin: 0;
+}
+
 #navBar {
     background-color: lightgray;
     color: white;
     padding: 5px;
 }
 
-.projectContainer {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: auto;
-}
-
-.toDoTask {
+#container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
+    height: 800px;
 }
 
+#sideContainer {
+    width: 15%;
+    height: 800px;
+    background-color: darkgrey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2rem;
+    gap: 10px;
+}
 
-.addToDo {
-    background-color: lightgray;
+#mainContainer {
+    width:85%;
+    height: 800px;
+    background-color: lightgrey;
+}
+
+.projectContent {
+    display: none;
+    width: 80%;
+    margin: 0 auto 0 auto;
+}
+
+.projectContent.active {
+    display: block;
+}
+
+.projectInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px auto 20px auto;
+    padding-bottom: 20px;
+    border-bottom: 1px solid black;
+}
+
+.projectTab {
     padding: 10px;
-    margin: 5px;
+    width: 80%;
 }
 
-.addToDo:hover {
-    cursor: pointer;
-    background-color: grey;
+.projectTab.active{
+    background-color: blue;
 }
+
+.toDo {
+    display: flex;
+    justify-content: space-between;
+    border: solid 1px black;
+    margin: 15px 0 15px 0;
+    gap: 10px;
+    padding: 10px;
+}
+
+.toDoLeft {
+    display: flex;
+    gap: 10px;
+    margin: 0 0 0 5px;
+    padding: 0;
+}
+
+.toDoRight {
+    display: flex;
+    margin: 0 5px 0 0;
+    padding: 0;
+}
+
+.toDoTitle {
+    justify-self: flex-start;
+}
+
+.toDoDate {
+    justify-self: flex-end;
+    align-self: flex-end;
+}
+
+
+.addFormToDo {
+    padding: 5px;
+    background-color: none;
+    font-size: 1.3rem;
+    border: solid 1px black;
+}
+
+.addFormToDo:hover {
+    cursor: pointer;
+    background-color: red;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.addFormProject {
+    padding: 10px;
+    border: solid 1px black;
+}
+
+.projectForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 70%;
+}
+
+input, button {
+    border: none;
+    border-radius: 0;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.checkBox {
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    background-color: none;
+    border: solid 1px black;
+    justify-self: flex-start;
+    align-self: center;
+}
+
+.checkBox.active {
+    background-color: green;
+}
+
+.checkbox:hover {
+    cursor: pointer;
+    border: solid 3px black;
+}
+
+
+

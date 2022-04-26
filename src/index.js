@@ -1,21 +1,21 @@
 import './style.css';
-import {factory, project, toDo} from './logic-modules/factory';
-import {addToDoDom, createForm} from './dom-modules/addToDo.js'
+import {project, toDo, projects} from './logic-modules/factory.js';
+import createProject from './dom-modules/projectDOM.js';
+import {addFormToDo, addFormProject} from './dom-modules/formDOM.js';
 
-console.log('something');
+const allProjects = projects();
 
-const cleanHouse = toDo('cleanHouse', 'take out trash, sweep floor', 'never', 'high');
+const project1 = project('project1', 'test project 1, this is the description area');
+project1.addToDo(toDo('Be born','07/12/1997'));
+project1.addToDo(toDo('Graduate','06/06/2016'));
 
-const chores = project('chores');
+createProject(project1);
 
-chores.addToDo(cleanHouse);
 
-console.log(chores);
+//button to add projects
 
-const task1 = addToDoDom(cleanHouse);
+const projectButton1 = addFormProject();
 
-const project1 = document.querySelector('.projectContainer');
+document.querySelector('#sideContainer').appendChild(projectButton1);
 
-console.log(project1);
-
-project1.appendChild(task1);
+export default allProjects;
