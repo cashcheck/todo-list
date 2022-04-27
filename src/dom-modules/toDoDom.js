@@ -1,8 +1,13 @@
-import { project, toDo} from '../logic-modules/factory.js';
+import allProjects from '../index.js';
+import {project, toDo, projects} from '../logic-modules/factory.js';
 
 //function creates button which triggers form popUp
 
-function createToDo(toDoObject) {
+function createToDo(toDoObject, projectTitle) {
+
+    allProjects.findProject(projectTitle).addToDo(toDoObject);
+    
+    const projectDom = document.getElementById(projectTitle);
 
     const toDo = document.createElement('div');
     toDo.classList.add('toDo');
@@ -20,6 +25,7 @@ function createToDo(toDoObject) {
 
     check.addEventListener('click', function(e) {
         e.target.classList.toggle('active');
+        e.target.parentNode.parentNode.classList.toggle('active');
     })
 
     toDoLeft.appendChild(check);
@@ -37,7 +43,7 @@ function createToDo(toDoObject) {
     toDo.appendChild(toDoLeft);
     toDo.appendChild(toDoRight);
 
-    return toDo;
+    projectDom.appendChild(toDo);
 
 }
 

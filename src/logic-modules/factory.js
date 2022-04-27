@@ -31,8 +31,6 @@ function projects() {
 
     function addProject(project) {
         projectList.push(project);
-
-
     }
 
     function findProject(projectTitle) {
@@ -40,9 +38,18 @@ function projects() {
         return projectObject;
     }
 
+    function removeProject(projectTitle) {
+        for (let i = 0; i < projectList.length; i++) {
+            if (projectList[i].title==projectTitle) {
+                projectList.splice(i, 1);
+            }
+
+        }
+
+    }
 
 
-    return {projectList, addProject, findProject};
+    return {projectList, addProject, findProject, removeProject};
 
 }
 

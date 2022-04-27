@@ -1,8 +1,11 @@
-import addToDo from './toDoDom.js'
+import allProjects from '../index.js';
+import createToDo from './toDoDom.js';
 import {addFormToDo, addFormProject} from './formDOM.js';
-
+import xIcon from '../images/xIcon.png'
 
 function createProject(project) {
+
+    allProjects.addProject(project);
 
     //creates contents of tab
 
@@ -14,13 +17,9 @@ function createProject(project) {
 
     if (project.toDoList.length) {
 
-    console.log(project.toDoList);
-
     project.toDoList.forEach(element => {
 
-        let toDoDom = addToDo(element);
-        const projectDom = document.getElementById(project.title);
-        projectDom.appendChild(toDoDom);
+        createToDo(element, project.title);
 
     })
 
@@ -52,10 +51,32 @@ function createProject(project) {
 function createProjectTab(title) {
     const projectTab = document.createElement('div');
     projectTab.classList.add('projectTab');
-    projectTab.textContent = title;
+    
+    const projectTabText = document.createElement('p');
+    projectTabText.textContent = title;
+
+    projectTab.appendChild(projectTabText);
+
+    const closeProjectButton = new Image();
+    closeProjectButton.src = xIcon;
+    closeProjectButton.classList.add('xIcon');
+
+    closeProjectButton.addEventListener('click', function(e) {
+        removeProjectContent(title);
+        e.target.parentNode.remove();
+    })
+
+    projectTab.appendChild(closeProjectButton);
+
 
     return projectTab;
 
+}
+
+function removeProjectContent(projectTitle) {
+    allProjects.removeProject(projectTitle);
+    const projectContentDiv = document.getElementById(projectTitle);
+    projectContentDiv.remove();
 }
 
 //function to create projectContent section 

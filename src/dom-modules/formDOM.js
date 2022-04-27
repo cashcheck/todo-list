@@ -1,7 +1,8 @@
 import { projects, project, toDo} from '../logic-modules/factory.js';
 import createToDo from './toDoDom.js';
 import createProject from './projectDOM.js';
-import allProjects from '../index.js';
+import plusIcon from '../images/plusIcon.png';
+
 
 //functions to create forms for new toDo objects
 
@@ -12,7 +13,15 @@ function addFormToDo() {
     const formButton = document.createElement('div');
     formButton.classList.add('addFormToDo');
 
-    formButton.textContent = 'Add toDo'
+    const formButtonIcon = new Image();
+    formButtonIcon.src = plusIcon;
+    formButtonIcon.classList.add('formButtonIcon');
+
+    const formButtonText = document.createElement('p')
+    formButtonText.textContent = 'Add toDo';
+
+    formButton.appendChild(formButtonIcon);
+    formButton.appendChild(formButtonText);
 
     formButton.addEventListener('click', function() {
 
@@ -31,6 +40,7 @@ function addFormToDo() {
 function createFormToDo() {
 
 const toDoForm = document.createElement(`form`);
+toDoForm.classList.add('toDoForm');
 
 toDoForm.addEventListener('submit', function(e) {
 
@@ -45,20 +55,13 @@ let date = document.querySelector('#formDate').value;
 const toDo1 = toDo(title, date);
 const currentProject = toDoForm.parentNode;
 
-allProjects.findProject(currentProject.id).addToDo(toDo1);
-console.log(allProjects);
-
-//
-
-const toDoDom = createToDo(toDo1);
-
-toDoForm.parentNode.appendChild(toDoDom);
+const toDoDom = createToDo(toDo1, currentProject.id);
 
 toDoForm.parentNode.removeChild(toDoForm);
 
 const formButton = addFormToDo();
 
-toDoDom.parentNode.appendChild(formButton);
+document.getElementById(currentProject.id).appendChild(formButton);
 
 
 })
@@ -69,6 +72,7 @@ const title = document.createElement(`input`);
 title.type = 'text';
 title.value = 'What is your task?';
 title.id='formTitle'
+title.size = '40';
 toDoForm.appendChild(title);
 
 const date = document.createElement(`input`);
@@ -80,9 +84,30 @@ const submit = document.createElement(`button`);
 submit.textContent = 'Submit';
 toDoForm.appendChild(submit);
 
+const cancel = document.createElement(`button`);
+cancel.textContent = 'Cancel';
+
+cancel.addEventListener('click', function(e) {
+
+const formDOM = document.querySelector('.toDoForm');
+
+const addForm = addFormToDo();
+
+formDOM.parentNode.appendChild(addForm);
+
+formDOM.parentNode.removeChild(formDOM);
+
+})
+
+toDoForm.appendChild(cancel);
+
 return toDoForm;
 
 }
+
+//function for cancel button
+
+
 
 
 
@@ -101,7 +126,6 @@ function addFormProject() {
     formButton.addEventListener('click', function() {
 
     const form = createFormProject();
-    console.log(formButton.parentNode)
     formButton.parentNode.appendChild(form);
     formButton.parentNode.removeChild(formButton);
     
@@ -124,13 +148,7 @@ e.preventDefault();
 const projectTitle = document.querySelector('#projectFormTitle').value;
 const projectDescription = document.querySelector('#projectFormDescription').value;
 
-//creates and adds project to all projects
-
 const newProject = project(projectTitle, projectDescription);
-allProjects.addProject(newProject);
-console.log(allProjects);
-
-//
 
 createProject(newProject);
 
